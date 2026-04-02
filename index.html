@@ -28,32 +28,25 @@
     padding: 2.5rem 1.5rem 3rem;
   }
 
-  /* ── Profile header (like hyungjoo) ── */
+  /* ── Profile header ── */
   .profile-header {
-    text-align: center;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
     margin-bottom: 2rem;
   }
 
   .profile-pic {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+    width: 180px;
+    height: 240px;
+    border-radius: 8px;
     object-fit: cover;
-    margin-bottom: 1rem;
+    flex-shrink: 0;
   }
 
-  .profile-pic-placeholder {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    background: #e9e9e9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.8rem;
-    color: #b0b0b0;
-    font-weight: 300;
+  .profile-info {
+    flex: 1;
+    padding-top: 0.5rem;
   }
 
   .profile-header h1 {
@@ -78,7 +71,6 @@
 
   .profile-links {
     display: flex;
-    justify-content: center;
     gap: 1.2rem;
     font-size: 0.88rem;
   }
@@ -351,6 +343,10 @@
 
   /* ── Responsive ── */
   @media (max-width: 600px) {
+    .profile-header { flex-direction: column; align-items: center; text-align: center; }
+    .profile-pic { width: 140px; height: 187px; }
+    .profile-info { padding-top: 0; }
+    .profile-links { justify-content: center; }
     .pub-item { flex-direction: column; gap: 0.5rem; }
     .pub-thumb { width: 100%; height: 120px; }
     .vitae-header { flex-direction: column; gap: 0.1rem; }
@@ -368,6 +364,7 @@
   <!-- ── Profile ── -->
   <div class="profile-header">
     <img class="profile-pic" src="profile.jpeg" alt="Junseo Jang">
+    <div class="profile-info">
     <h1>Junseo Jang</h1>
     <div class="subtitle">ML Engineer</div>
     <div class="email"><a href="mailto:jjs97612@naver.com">jjs97612@naver.com</a></div>
@@ -377,6 +374,7 @@
       <a href="https://scholar.google.com/citations?user=y6Pa68UAAAAJ&hl=ko" target="_blank" title="Google Scholar"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M0 9.5l12-8 12 8-1.5 1L12 4 1.5 10.5z"/></svg></a>
       <a href="https://github.com/junseo-jang" target="_blank" title="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
     </div>
+    </div><!-- .profile-info -->
   </div>
 
   <!-- ── About ── -->
