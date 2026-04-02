@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junseo Jang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
+    background: #fff;
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: #4183c4; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ── */
+  .wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  /* ── Profile header (like hyungjoo) ── */
+  .profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  .profile-pic-placeholder {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: #e9e9e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    color: #b0b0b0;
+    font-weight: 300;
+  }
+
+  .profile-header h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #222;
+  }
+
+  .profile-header .subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-header .email {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+  }
+
+  .profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  .profile-links a { color: #555; }
+  .profile-links a:hover { color: #4183c4; text-decoration: none; }
+
+  /* ── Section titles (h5 style like hyungjoo) ── */
+  .section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #222;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* ── About ── */
+  .about p {
+    font-size: 0.94rem;
+    color: #444;
+    margin-bottom: 0.7rem;
+    line-height: 1.8;
+  }
+
+  .about a { color: #4183c4; font-weight: 600; }
+
+  /* ── Publications ── */
+  .pub-year-header {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  .pub-year-header:first-of-type { margin-top: 0.5rem; }
+
+  .pub-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+  }
+
+  .pub-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    align-items: flex-start;
+  }
+
+  .pub-thumb {
+    flex-shrink: 0;
+    width: 90px;
+    height: 64px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .pub-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* placeholder icon for papers without thumbnail */
+  .pub-thumb svg {
+    width: 28px;
+    height: 28px;
+    fill: #ccc;
+  }
+
+  .pub-info { flex: 1; }
+
+  .pub-title {
+    font-weight: 700;
+    font-size: 0.93rem;
+    line-height: 1.45;
+    color: #222;
+    margin-bottom: 0.15rem;
+  }
+
+  .pub-authors {
+    font-size: 0.84rem;
+    color: #666;
+    line-height: 1.55;
+    margin-bottom: 0.15rem;
+  }
+
+  .pub-authors .me {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #333;
+  }
+
+  .pub-venue {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 0.25rem;
+  }
+
+  .pub-links {
+    font-size: 0.8rem;
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .pub-links a {
+    color: #4183c4;
+    font-weight: 600;
+  }
+
+  /* ── Vitae timeline ── */
+  .vitae-intro {
+    font-size: 0.88rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+
+  .vitae-intro a { font-weight: 600; }
+
+  .vitae-list {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .vitae-list::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #e0e0e0;
+    border-radius: 1px;
+  }
+
+  .vitae-item {
+    position: relative;
+    padding-bottom: 1.6rem;
+    padding-left: 1.2rem;
+  }
+
+  .vitae-item:last-child { padding-bottom: 0; }
+
+  .vitae-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid #4183c4;
+  }
+
+  .vitae-item.current::before {
+    background: #4183c4;
+    border-color: #4183c4;
+    box-shadow: 0 0 0 3px rgba(65, 131, 196, 0.15);
+  }
+
+  .vitae-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .vitae-org {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #222;
+  }
+
+  .vitae-period {
+    font-size: 0.82rem;
+    color: #999;
+  }
+
+  .vitae-role {
+    font-size: 0.88rem;
+    color: #555;
+    font-weight: 600;
+    margin-top: 0.1rem;
+  }
+
+  .vitae-desc {
+    font-size: 0.84rem;
+    color: #777;
+    margin-top: 0.2rem;
+    line-height: 1.6;
+  }
+
+  .vitae-desc li {
+    list-style: none;
+    padding-left: 0.8rem;
+    position: relative;
+  }
+
+  .vitae-desc li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #bbb;
+  }
+
+  /* ── Education (reuse vitae) ── */
+
+  /* ── Skills ── */
+  .skills-table {
+    font-size: 0.9rem;
+  }
+
+  .skills-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+
+  .skills-label {
+    width: 130px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  .skills-value {
+    color: #666;
+    font-size: 0.88rem;
+  }
+
+  /* ── Awards ── */
+  .award-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+  }
+
+  .award-date {
+    width: 80px;
+    flex-shrink: 0;
+    color: #999;
+    font-size: 0.84rem;
+  }
+
+  .award-text { color: #444; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #e8e8e8;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #bbb;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .pub-item { flex-direction: column; gap: 0.5rem; }
+    .pub-thumb { width: 100%; height: 120px; }
+    .vitae-header { flex-direction: column; gap: 0.1rem; }
+    .skills-row { flex-direction: column; gap: 0.1rem; }
+    .skills-label { width: auto; }
+    .award-item { flex-direction: column; gap: 0.1rem; }
+    .award-date { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ── Profile ── -->
+  <div class="profile-header">
+    <div class="profile-pic-placeholder">JS</div>
+    <!-- Replace with: <img class="profile-pic" src="assets/profile.jpg" alt="Junseo Jang"> -->
+    <h1>Junseo Jang</h1>
+    <div class="subtitle">ML Engineer</div>
+    <div class="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f3999980cac4c5c2c1b39d92859681dd909c9e">[email&#160;protected]</a></div>
+    <div class="profile-links">
+      <a href="/cdn-cgi/l/email-protection#ddb7b7aee4eaebecef9db3bcabb8aff3beb2b0">Email</a>
+      <a href="https://www.linkedin.com/in/junseo-jang-687201215" target="_blank">LinkedIn</a>
+      <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+      <a href="https://github.com/" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <!-- ── About ── -->
+  <h3 class="section-title">About</h3>
+  <div class="about">
+    <p>
+      I am an ML Engineer focused on building efficient large language models through <strong>structured pruning</strong>, <strong>knowledge distillation</strong>, and <strong>RL-based post-training</strong>. I work on training compact student models (0.9B–2B) distilled from large MoE teachers using Megatron-LM on A100 clusters.
+    </p>
+    <p>
+      I received my M.S. in Artificial Intelligence from <a href="https://www.konkuk.ac.kr/">Konkuk University</a>, advised by <a href="#">Harksoo Kim</a>. My research centered on NLP and LLM safety, resulting in two co-first-author papers at <strong>ACL 2025</strong>.
+    </p>
+    <p>
+      Previously, I interned at <a href="https://www.navercorp.com/">NAVER Cloud</a> (HyperCLOVA X pretraining data) and led an industry-academia project with <a href="https://www.lgresearch.ai/">LG AI Research</a> on data selection for efficient LLM training.
+    </p>
+  </div>
+
+  <!-- ── Publications ── -->
+  <h3 class="section-title">Publications</h3>
+  <p style="font-size:0.82rem; color:#999; margin-bottom:0.5rem;">* indicates equal contribution</p>
+
+  <div class="pub-year-header">2025</div>
+  <hr class="pub-divider">
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <!-- Replace with: <img src="assets/papers/acl2025-misinfo.png" alt=""> -->
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Exploring the Impact of Instruction-Tuning on LLM's Susceptibility to Misinformation</div>
+      <div class="pub-authors">Kyubeen Han*, <span class="me">Junseo Jang*</span>, Hongjin Kim, Geunyoung Jung, Harksoo Kim</div>
+      <div class="pub-venue">ACL 2025 (Main)</div>
+      <div class="pub-links">
+        <a href="#">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Small Changes, Big Impact: How Manipulating a Few Neurons Can Drastically Alter LLM Aggression</div>
+      <div class="pub-authors">Jaewook Lee*, <span class="me">Junseo Jang*</span>, Oh-Woong Kwon, Harksoo Kim</div>
+      <div class="pub-venue">ACL 2025 (Main)</div>
+      <div class="pub-links">
+        <a href="#">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">AESPA: Automated Essay Scoring using Polished Argument Feature Weights</div>
+      <div class="pub-authors"><span class="me">Junseo Jang*</span>, Joosang Lee*, Yejin Lee, Harksoo Kim</div>
+      <div class="pub-venue">Pattern Analysis and Recognition 28, 141 (2025)</div>
+      <div class="pub-links">
+        <a href="#">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-header">2024</div>
+  <hr class="pub-divider">
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Enhancing the Reasoning Capability of SLM through Bidirectional Chain of Thought Distillation</div>
+      <div class="pub-authors"><span class="me">Junseo Jang</span>, Hongjin Kim, Harksoo Kim</div>
+      <div class="pub-venue">HCLT 2024</div>
+      <div class="pub-links">
+        <a href="#">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-header">2023</div>
+  <hr class="pub-divider">
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Continuous Korean Named Entity Recognition Using Knowledge Distillation</div>
+      <div class="pub-authors"><span class="me">Junseo Jang</span>, Seongsik Park, Harksoo Kim</div>
+      <div class="pub-venue">HCLT 2023</div>
+      <div class="pub-links">
+        <a href="#">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Technical Report ── -->
+  <h3 class="section-title">Technical Report</h3>
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">HyperCLOVA X 32B Think</div>
+      <div class="pub-authors">NAVER Cloud HyperCLOVA X Team</div>
+      <div class="pub-venue">arXiv preprint, Jan 2026</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2601.03286" target="_blank">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-thumb">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-7h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">HyperCLOVA X THINK Technical Report</div>
+      <div class="pub-authors">NAVER Cloud HyperCLOVA X Team</div>
+      <div class="pub-venue">arXiv preprint, Jun 2025</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2506.22403" target="_blank">Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Vitae ── -->
+  <h3 class="section-title">Vitæ</h3>
+
+  <div class="vitae-list">
+
+    <div class="vitae-item current">
+      <div class="vitae-header">
+        <span class="vitae-org">KT Corp.</span>
+        <span class="vitae-period">Jul 2025 – Present</span>
+      </div>
+      <div class="vitae-role">Responsible AI Center · ML Engineer</div>
+      <ul class="vitae-desc">
+        <li>Multimodal RAI safety evaluation framework (32 modality combinations)</li>
+        <li>Korean-localized Golden Set based on KT AI Risk Taxonomy</li>
+      </ul>
+    </div>
+
+    <div class="vitae-item">
+      <div class="vitae-header">
+        <span class="vitae-org">NAVER Cloud</span>
+        <span class="vitae-period">May – Jul 2025</span>
+      </div>
+      <div class="vitae-role">HyperCLOVA Team · Internship</div>
+      <ul class="vitae-desc">
+        <li>HyperCLOVA X pretraining data pipeline</li>
+        <li>39M Python files rewritten via Spark + vLLM → 20B tokens, 2× on HumanEval/MBPP</li>
+      </ul>
+    </div>
+
+    <div class="vitae-item">
+      <div class="vitae-header">
+        <span class="vitae-org">LG AI Research</span>
+        <span class="vitae-period">Dec 2024 – Mar 2025</span>
+      </div>
+      <div class="vitae-role">Industry-Academia Project · Project Leader</div>
+      <ul class="vitae-desc">
+        <li>Data selection for LLM training: 30K from 14M → +5%p on GSM8K</li>
+      </ul>
+    </div>
+
+    <div class="vitae-item">
+      <div class="vitae-header">
+        <span class="vitae-org">Konkuk University</span>
+        <span class="vitae-period">Sep 2023 – Aug 2025</span>
+      </div>
+      <div class="vitae-role">M.S. in Artificial Intelligence</div>
+      <ul class="vitae-desc">
+        <li>Advisor: Harksoo Kim · GPA: 4.21/4.5</li>
+      </ul>
+    </div>
+
+    <div class="vitae-item">
+      <div class="vitae-header">
+        <span class="vitae-org">AgileSoda</span>
+        <span class="vitae-period">Jul – Dec 2022</span>
+      </div>
+      <div class="vitae-role">NLP Team · Internship</div>
+      <ul class="vitae-desc">
+        <li>Continual learning for medical NER; ICD code mapping with XAI</li>
+      </ul>
+    </div>
+
+    <div class="vitae-item">
+      <div class="vitae-header">
+        <span class="vitae-org">Konkuk University</span>
+        <span class="vitae-period">Mar 2017 – Aug 2023</span>
+      </div>
+      <div class="vitae-role">B.S. in Computer Science</div>
+      <ul class="vitae-desc">
+        <li>GPA: 4.1/4.5</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── Skills ── -->
+  <h3 class="section-title">Skills</h3>
+  <div class="skills-table">
+    <div class="skills-row">
+      <span class="skills-label">ML / LLM</span>
+      <span class="skills-value">PyTorch, Megatron-LM, TRL, DeepSpeed, vLLM, SGLang</span>
+    </div>
+    <div class="skills-row">
+      <span class="skills-label">Data Systems</span>
+      <span class="skills-value">Apache Spark, Hadoop, HDFS</span>
+    </div>
+    <div class="skills-row">
+      <span class="skills-label">Infrastructure</span>
+      <span class="skills-value">Docker, Slurm, A100 Clusters</span>
+    </div>
+    <div class="skills-row">
+      <span class="skills-label">Languages</span>
+      <span class="skills-value">Python, Korean, English</span>
+    </div>
+  </div>
+
+  <!-- ── Awards ── -->
+  <h3 class="section-title">Honors &amp; Awards</h3>
+  <div class="award-item">
+    <span class="award-date">Oct 2022</span>
+    <span class="award-text">1st Place, KT Genie-Labs AI Dev Challenge</span>
+  </div>
+  <div class="award-item">
+    <span class="award-date">Jan 2022</span>
+    <span class="award-text">Dean's List, Academic Excellence — Konku
